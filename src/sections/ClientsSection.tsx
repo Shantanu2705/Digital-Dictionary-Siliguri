@@ -69,9 +69,9 @@ export function ClientsSection() {
                   src={`/clients/${filename}`}
                   alt={`Client Logo ${index + 1}`}
                   fill
-                  sizes="(max-width: 768px) 100vw, 33vw"
+                  sizes="280px"
                   className="object-contain mix-blend-multiply"
-                  loading="lazy"
+                  priority={index < 10}
                 />
               </div>
             </div>
