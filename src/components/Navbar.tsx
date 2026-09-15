@@ -192,14 +192,16 @@ export function Navbar() {
                   href={link.href}
                   className={cn(
                     "text-sm font-medium transition-all flex items-center pb-6 -mb-6 group",
-                    link.name === "Digital Solutions" ? "" : "text-charcoal hover:text-charcoal"
+                    link.name === "Digital Solutions" 
+                      ? "" 
+                      : (isScrolled ? "text-charcoal hover:text-black" : "text-white/80 hover:text-white")
                   )}
                 >
                   <span className={cn(
                     "relative flex items-center gap-1 transition-all py-1",
                     link.name === "Digital Solutions" 
                       ? "text-off-white bg-charcoal px-4 py-1.5 rounded-full shadow-lg border border-luxury-gold/30 hover:border-luxury-gold hover:shadow-[0_0_15px_rgba(212,175,55,0.4)]" 
-                      : (pathname === link.href ? "font-bold text-charcoal" : "")
+                      : (pathname === link.href ? (isScrolled ? "font-bold text-charcoal" : "font-bold text-white") : "")
                   )}>
                     {link.name}
                     {link.hasMegaMenu && (
@@ -208,7 +210,8 @@ export function Navbar() {
                     {link.name !== "Digital Solutions" && (
                       <span 
                         className={cn(
-                          "absolute bottom-0 left-0 w-full h-[2px] bg-charcoal rounded-full transition-all duration-300",
+                          "absolute bottom-0 left-0 w-full h-[2px] rounded-full transition-all duration-300",
+                          isScrolled ? "bg-charcoal" : "bg-white",
                           pathname === link.href ? "opacity-100 scale-x-100" : "opacity-0 scale-x-0 group-hover:opacity-100 group-hover:scale-x-100"
                         )} 
                       />
@@ -302,7 +305,10 @@ export function Navbar() {
             </div>
 
             <button
-              className="lg:hidden text-charcoal hover:text-charcoal transition-colors"
+              className={cn(
+                "lg:hidden transition-colors",
+                isScrolled ? "text-charcoal hover:text-black" : "text-white hover:text-white/80"
+              )}
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             >
               {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
