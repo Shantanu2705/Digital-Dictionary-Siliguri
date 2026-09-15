@@ -92,10 +92,20 @@ export default function ScrollAnimation() {
     };
 
     // Fast load ONLY the very first 3 frames so initial render is instant.
-    // Zero background spam - we'll load the rest dynamically as they scroll!
     for (let i = 1; i <= 3; i++) {
       loadFrame(i);
     }
+
+    // Background prefetch keyframes (every 10th frame) so fast scrolling has fallbacks
+    let prefetchIndex = 10;
+    const prefetchInterval = setInterval(() => {
+      if (prefetchIndex <= FRAME_COUNT) {
+        loadFrame(prefetchIndex);
+        prefetchIndex += 10;
+      } else {
+        clearInterval(prefetchInterval);
+      }
+    }, 50);
 
     const handleScroll = () => {
       const scrollTop = window.scrollY;
@@ -117,11 +127,21 @@ export default function ScrollAnimation() {
         loadFrame(i);
       }
 
-      // If the targeted frame is already loaded, render it immediately
-      if (images[frameIndex - 1] && images[frameIndex - 1].complete) {
+      // Nearest loaded frame fallback: if target frame isn't loaded, find the closest one
+      let renderFrameIndex = frameIndex;
+      if (!images[renderFrameIndex - 1]?.complete) {
+        for (let i = renderFrameIndex - 1; i >= 1; i--) {
+          if (images[i - 1]?.complete) {
+            renderFrameIndex = i;
+            break;
+          }
+        }
+      }
+
+      if (images[renderFrameIndex - 1]?.complete) {
         if (animationFrameId) cancelAnimationFrame(animationFrameId);
         animationFrameId = requestAnimationFrame(() => {
-          renderImage(images[frameIndex - 1]);
+          renderImage(images[renderFrameIndex - 1]);
         });
       }
     };
@@ -134,6 +154,7 @@ export default function ScrollAnimation() {
 
     return () => {
       isCancelled = true;
+      clearInterval(prefetchInterval);
       window.removeEventListener("scroll", handleScroll);
       if (animationFrameId) cancelAnimationFrame(animationFrameId);
     };

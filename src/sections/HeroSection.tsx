@@ -13,7 +13,7 @@ export function HeroSection() {
         initial={{ opacity: 0, scale: 0.5 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 1.5, ease: "easeOut" }}
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] md:w-[600px] md:h-[600px] bg-luxury-gold/10 rounded-full blur-[100px] pointer-events-none -z-10" 
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] md:w-[600px] md:h-[600px] bg-luxury-gold/10 rounded-full blur-[100px] pointer-events-none -z-10 transform-gpu will-change-transform" 
       />
 
       <div className="container px-6 md:px-12 w-full flex flex-col items-center justify-center text-center relative z-10">

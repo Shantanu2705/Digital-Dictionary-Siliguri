@@ -176,6 +176,7 @@ export function Navbar() {
               height={180}
               className="object-contain h-14 w-auto md:h-20"
               priority
+              fetchPriority="high"
             />
           </Link>
 
