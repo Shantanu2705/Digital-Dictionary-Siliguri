@@ -56,21 +56,21 @@ export function ClientsSection() {
         </DynamicTextColor>
       </div>
         
-      {/* Infinite Horizontal Scroll Container */}
-      <div className="relative flex overflow-hidden z-10 before:absolute before:left-0 before:top-0 before:w-32 before:h-full before:bg-gradient-to-r before:from-white/50 before:to-transparent before:z-10 after:absolute after:right-0 after:top-0 after:w-32 after:h-full after:bg-gradient-to-l after:from-white/50 after:to-transparent after:z-10">
-        <div className="flex w-max animate-marquee hover:[animation-play-state:paused] py-8">
-          {[...CLIENT_LOGOS, ...CLIENT_LOGOS].map((filename, index) => (
+      {/* Static Grid Container */}
+      <div className="relative z-10 container mx-auto px-6 md:px-12">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-6 py-8 justify-items-center">
+          {CLIENT_LOGOS.map((filename, index) => (
             <div 
               key={index}
-              className="flex-none w-[280px] h-[160px] bg-white border border-luxury-gold/30 flex items-center justify-center p-6 mx-4 opacity-100 hover:-translate-y-2 transition-transform shadow-[0_4px_20px_rgba(212,175,55,0.15)] hover:shadow-[0_10px_30px_rgba(212,175,55,0.3)] duration-300 rounded-[2rem]"
+              className="w-full aspect-[3/2] bg-white border border-luxury-gold/30 flex items-center justify-center p-4 md:p-6 hover:-translate-y-2 transition-all shadow-[0_4px_20px_rgba(212,175,55,0.15)] hover:shadow-[0_10px_30px_rgba(212,175,55,0.3)] duration-300 rounded-2xl md:rounded-[2rem]"
             >
               <div className="relative w-full h-full flex items-center justify-center">
                 <Image
                   src={`/clients/${filename}`}
                   alt={`Client Logo ${index + 1}`}
                   fill
-                  sizes="280px"
-                  className="object-contain mix-blend-multiply"
+                  sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 20vw"
+                  className="object-contain mix-blend-multiply p-2"
                   priority={index < 10}
                 />
               </div>

@@ -20,10 +20,10 @@ export default function Home() {
       
       {/* All Sections */}
       <HeroSection />
+      <ClientsSection />
       <BrandStatementSection />
       <ServicesSection />
       <WhyUsSection />
-      <ClientsSection />
       <ProcessSection />
       <CtaSection />
       
