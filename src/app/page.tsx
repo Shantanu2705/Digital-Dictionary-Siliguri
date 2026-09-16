@@ -5,6 +5,7 @@ import { BrandStatementSection } from "@/sections/BrandStatementSection";
 import { ServicesSection } from "@/sections/ServicesSection";
 import { WhyUsSection } from "@/sections/WhyUsSection";
 import { ClientsSection } from "@/sections/ClientsSection";
+import { MarqueeLogosSection } from "@/sections/MarqueeLogosSection";
 import { ProcessSection } from "@/sections/ProcessSection";
 import { CtaSection } from "@/sections/CtaSection";
 
@@ -24,6 +25,7 @@ export default function Home() {
       <BrandStatementSection />
       <ServicesSection />
       <WhyUsSection />
+      <MarqueeLogosSection />
       <ProcessSection />
       <CtaSection />
       
