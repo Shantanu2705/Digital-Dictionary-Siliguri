@@ -21,11 +21,11 @@ export default function Home() {
       
       {/* All Sections */}
       <HeroSection />
-      <MarqueeLogosSection />
-      <ClientsSection />
       <BrandStatementSection />
       <ServicesSection />
       <WhyUsSection />
+      <MarqueeLogosSection />
+      <ClientsSection />
       <ProcessSection />
       <CtaSection />
       
